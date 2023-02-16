@@ -32,9 +32,10 @@ const UsuarioSchema = Schema ({
     },
 });
 
-//Quitar la contraseña que no sea visible
+//Quitar nombres para que no sean visibles en el postman
 UsuarioSchema.methods.toJSON = function(){
-    const {__v, password, ...usuario } = this.toObject();
+    const {__v, password, _id, ...usuario } = this.toObject();
+    usuario.uid = _id;
     return usuario;
 }
 
